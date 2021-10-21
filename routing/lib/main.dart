@@ -146,12 +146,12 @@ class _ReturnDataScreenState extends State<ReturnDataScreen> {
         ),
       ),
     );
+  }
 
-    @override
-    void dispose() {
-      _textController.dispose();
-      super.dispose();
-    }
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
   }
 }
 
