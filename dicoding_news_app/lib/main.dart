@@ -1,7 +1,9 @@
 import 'package:dicoding_news_app/article.dart';
 import 'package:dicoding_news_app/article_detail.dart';
-import 'package:dicoding_news_app/article_web.dart';
+import 'package:dicoding_news_app/styles.dart';
 import 'package:flutter/material.dart';
+
+import 'list_article.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,8 +17,27 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'News App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: primaryColor,
+        scaffoldBackgroundColor: Colors.white,
+        colorScheme:
+            ColorScheme.fromSwatch().copyWith(secondary: secondaryColor),
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: myTextTheme,
+        appBarTheme: AppBarTheme(
+          color: secondaryColor,
+          elevation: 0,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            primary: secondaryColor,
+            textStyle: const TextStyle(),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(0),
+              ),
+            ),
+          ),
+        ),
       ),
       initialRoute: NewsListPage.routeName,
       routes: {
@@ -26,44 +47,4 @@ class MyApp extends StatelessWidget {
       },
     );
   }
-}
-
-class NewsListPage extends StatelessWidget {
-  static const routeName = '/article_list';
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('News App'),
-      ),
-      body: FutureBuilder<String>(
-        future: DefaultAssetBundle.of(context).loadString('assets/article.json'),
-        builder: (context, snapshot) {
-          final List<Article> articles = parseArticles(snapshot.data);
-          return ListView.builder(
-            itemCount: articles.length,
-            itemBuilder: (context, index) {
-              return _buildArticleItem(context, articles[index]);
-            },
-          );
-        },
-      ),
-    );
-  }
-}
-
-Widget _buildArticleItem(BuildContext context, Article article) {
-  return ListTile(
-    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-    leading: Image.network(
-      article.urlToImage,
-      width: 100,
-    ),
-    title: Text(article.title),
-    subtitle: Text(article.author),
-    onTap: () {
-      Navigator.pushNamed(context, ArticleDetailPage.routeName, arguments: article);
-    },
-  );
 }
