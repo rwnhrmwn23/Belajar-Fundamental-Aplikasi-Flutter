@@ -1,9 +1,10 @@
-import 'package:dicoding_news_app/article.dart';
-import 'package:dicoding_news_app/article_detail.dart';
-import 'package:dicoding_news_app/styles.dart';
+import 'package:dicoding_news_app/common/styles.dart';
+import 'package:dicoding_news_app/data/model/article.dart';
+import 'package:dicoding_news_app/ui/article_detail_page.dart';
+import 'package:dicoding_news_app/ui/article_web_view.dart';
 import 'package:flutter/material.dart';
 
-import 'list_article.dart';
+import 'ui/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,33 +18,37 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'News App',
       theme: ThemeData(
-        primaryColor: primaryColor,
-        scaffoldBackgroundColor: Colors.white,
-        colorScheme:
-            ColorScheme.fromSwatch().copyWith(secondary: secondaryColor),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        textTheme: myTextTheme,
-        appBarTheme: AppBarTheme(
-          color: secondaryColor,
-          elevation: 0,
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            primary: secondaryColor,
-            textStyle: const TextStyle(),
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(0),
+          primaryColor: primaryColor,
+          scaffoldBackgroundColor: Colors.white,
+          colorScheme:
+              ColorScheme.fromSwatch().copyWith(secondary: secondaryColor),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          textTheme: myTextTheme,
+          appBarTheme: AppBarTheme(
+            color: secondaryColor,
+            elevation: 0,
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              primary: secondaryColor,
+              textStyle: const TextStyle(),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(0),
+                ),
               ),
             ),
           ),
-        ),
-      ),
-      initialRoute: NewsListPage.routeName,
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+              selectedItemColor: secondaryColor,
+              unselectedItemColor: Colors.grey)),
+      initialRoute: HomePage.routeName,
       routes: {
-        NewsListPage.routeName: (context) => NewsListPage(),
-        ArticleDetailPage.routeName: (context) => ArticleDetailPage(article: ModalRoute.of(context)?.settings.arguments as Article),
-        ArticleWebPage.routeName: (context) => ArticleWebPage(url: ModalRoute.of(context)?.settings.arguments as String)
+        HomePage.routeName: (context) => HomePage(),
+        ArticleDetailPage.routeName: (context) => ArticleDetailPage(
+            article: ModalRoute.of(context)?.settings.arguments as Article),
+        ArticleWebPage.routeName: (context) => ArticleWebPage(
+            url: ModalRoute.of(context)?.settings.arguments as String)
       },
     );
   }

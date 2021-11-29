@@ -1,8 +1,8 @@
-import 'package:dicoding_news_app/article.dart';
-import 'package:dicoding_news_app/widgets/custom_scaffold.dart';
+import 'package:dicoding_news_app/data/model/article.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+
+import 'article_web_view.dart';
 
 class ArticleDetailPage extends StatelessWidget {
   static const routeName = '/article_detail';
@@ -44,7 +44,8 @@ class ArticleDetailPage extends StatelessWidget {
                   ElevatedButton(
                     child: const Text('Read More'),
                     onPressed: () {
-                      Navigator.pushNamed(context, ArticleWebPage.routeName, arguments: article.url);
+                      Navigator.pushNamed(context, ArticleWebPage.routeName,
+                          arguments: article.url);
                     },
                   ),
                 ],
@@ -52,23 +53,6 @@ class ArticleDetailPage extends StatelessWidget {
             )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class ArticleWebPage extends StatelessWidget {
-  static const routeName = '/article_web';
-
-  final String url;
-
-  const ArticleWebPage({required this.url});
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomScaffold(
-      body: WebView(
-        initialUrl: url,
       ),
     );
   }
