@@ -45,8 +45,7 @@ class MyApp extends StatelessWidget {
       initialRoute: HomePage.routeName,
       routes: {
         HomePage.routeName: (context) => HomePage(),
-        ArticleDetailPage.routeName: (context) => ArticleDetailPage(
-            article: ModalRoute.of(context)?.settings.arguments as Article),
+        ArticleDetailPage.routeName: (context) => ArticleDetailPage(article: ModalRoute.of(context)?.settings.arguments as Article),
         ArticleWebPage.routeName: (context) => ArticleWebPage(
             url: ModalRoute.of(context)?.settings.arguments as String)
       },
