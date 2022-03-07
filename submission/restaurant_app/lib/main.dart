@@ -26,7 +26,9 @@ class MyApp extends StatelessWidget {
         initialRoute: HomeScreen.routeName,
         routes: {
           HomeScreen.routeName: (context) => HomeScreen(),
-          DetailScreen.routeName: (context) => DetailScreen(restaurantDetail: ModalRoute.of(context)?.settings.arguments as RestaurantDetail),
+          DetailScreen.routeName: (context) => DetailScreen(
+              restaurantDetail: ModalRoute.of(context)?.settings.arguments
+                  as RestaurantDetail),
         });
   }
 }

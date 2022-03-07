@@ -1,9 +1,9 @@
 import 'package:dicoding_news_app/common/styles.dart';
-import 'package:dicoding_news_app/data/model/article.dart';
 import 'package:dicoding_news_app/ui/article_detail_page.dart';
 import 'package:dicoding_news_app/ui/article_web_view.dart';
 import 'package:flutter/material.dart';
 
+import 'common/data/model/article.dart';
 import 'ui/home_page.dart';
 
 void main() {
